@@ -5,27 +5,31 @@
 /* body {
   position: relative;
 } */
+/* Gallery masonry: 3 cot so le, anh giu nguyen ty le (khong bi cat).
+   Dung CSS multi-column nen so luong anh bao nhieu cung duoc,
+   anh ngang / doc / vuong deu hien thi day du. */
 .content {
   width: 90%;
   margin: auto;
-  /* margin-top: 20px; */
   padding: 10px;
   padding-top: 50px;
-  /*display:  flex;
-	justify-content:  space-around;*/
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-rows: repeat(6, 1fr); */
-  /* position: absolute;
-  top: 30px; */
+  column-count: 3;
+  column-gap: 0;
 }
 .content a {
-  /* display: block; */
+  display: block;
   width: 100%;
   padding: 5px;
+  /* Khong cho 1 anh bi chia doi giua 2 cot */
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
 }
 .content a img {
+  display: block;
   width: 100%;
+  /* height:auto giu dung ty le goc -> khong cat anh */
+  height: auto;
 }
 .menu {
   /* padding-top: 5px; */
@@ -68,6 +72,13 @@ header {
   background-color: rgba(255, 255, 255, 0.7);
   color: black !important;
 }
+/* Tablet: 2 cot */
+@media only screen and (max-width: 62em) {
+  .content {
+    column-count: 2;
+  }
+}
+
 @media only screen and (max-width: 46.1875em) {
   .menu {
     height: 50px;
@@ -77,5 +88,12 @@ header {
   }
   header {
     left: 20px;
+  }
+}
+
+/* Dien thoai: 1 cot */
+@media only screen and (max-width: 36em) {
+  .content {
+    column-count: 1;
   }
 }
