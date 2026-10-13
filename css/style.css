@@ -27,9 +27,12 @@
 }
 .content a img {
   display: block;
+  /* width:100% + height:auto GHI DE thuoc tinh width/height trong HTML,
+     nen anh van co gian theo cot va giu dung ty le (khong bi cat).
+     Thuoc tinh HTML chi dung de trinh duyet biet truoc ty le -> khong giat layout. */
   width: 100%;
-  /* height:auto giu dung ty le goc -> khong cat anh */
   height: auto;
+  background-color: rgba(0, 0, 0, 0.04); /* o mo nhat trong luc anh dang tai */
 }
 .menu {
   /* padding-top: 5px; */
@@ -59,9 +62,24 @@
   padding-top: 10px;
 }
 
-.menu a:hover {
+/* Chi ap dung hover tren thiet bi CO chuot.
+   Tren dien thoai (touch), :hover khien lan bam dau tien chi "bat hover"
+   thay vi mo link -> phai bam 2 lan. Dung @media hover de tranh loi do. */
+@media (hover: hover) and (pointer: fine) {
+  .menu a:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+  }
+}
+/* Tren touch: phan hoi ngay khi nhan (khong can bam 2 lan) */
+.menu a:active {
   background-color: rgba(255, 255, 255, 0.7);
   color: black;
+}
+.menu a {
+  /* Bo delay ~300ms cua trinh duyet mobile + chan highlight xanh khi nhan */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 header {
   position: fixed;
