@@ -5,34 +5,35 @@
 /* body {
   position: relative;
 } */
-/* Gallery masonry: 3 cot so le, anh giu nguyen ty le (khong bi cat).
-   Dung CSS multi-column nen so luong anh bao nhieu cung duoc,
-   anh ngang / doc / vuong deu hien thi day du. */
+/* Gallery kieu Instagram: luoi o VUONG deu tam tap.
+   object-fit:contain -> anh THU NHO vua tron trong o, KHONG bi cat.
+   Anh doc/ngang se co vien trong hai ben (mau nen o duoi).
+   aspect-ratio co dinh -> trinh duyet biet truoc chieu cao moi o,
+   nen trang KHONG BI GIAT/NHAY khi anh dang tai (rat quan trong tren dien thoai). */
 .content {
   width: 90%;
   margin: auto;
   padding: 10px;
   padding-top: 50px;
-  column-count: 3;
-  column-gap: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
 }
 .content a {
   display: block;
-  width: 100%;
-  padding: 5px;
-  /* Khong cho 1 anh bi chia doi giua 2 cot */
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
+  /* O luon vuong, khong phu thuoc kich thuoc anh */
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #f2f2f2; /* mau vien khi anh khong lap kin o */
 }
 .content a img {
-  display: block;
-  /* width:100% + height:auto -> anh co gian theo cot,
-     giu dung ty le goc nen khong bi cat. */
   width: 100%;
-  height: auto;
-  background-color: rgba(0, 0, 0, 0.04); /* o mo nhat trong luc anh dang tai */
+  height: 100%;
+  /* contain = thu nho vua khung, khong cat.
+     Doi thanh cover neu muon anh lap kin o (nhung se bi cat). */
+  object-fit: contain;
 }
+
 .menu {
   /* padding-top: 5px; */
   width: 90%;
@@ -82,8 +83,11 @@
 }
 header {
   position: fixed;
-  left: 55px;
-  width: 90%;
+  /* left:0 + width:100% de menu khong tran ra ngoai tren dien thoai.
+     .menu ben trong da co width:90% + margin:auto nen van can giua. */
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
 .curent {
   background-color: rgba(255, 255, 255, 0.7);
@@ -92,7 +96,7 @@ header {
 /* Tablet: 2 cot */
 @media only screen and (max-width: 62em) {
   .content {
-    column-count: 2;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -103,14 +107,11 @@ header {
   .menu a {
     height: 50px;
   }
-  header {
-    left: 20px;
-  }
 }
 
-/* Dien thoai: 1 cot */
+/* Dien thoai: 2 cot (o vuong nho, cuon it hon) */
 @media only screen and (max-width: 36em) {
   .content {
-    column-count: 1;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
