@@ -27,9 +27,8 @@
 }
 .content a img {
   display: block;
-  /* width:100% + height:auto GHI DE thuoc tinh width/height trong HTML,
-     nen anh van co gian theo cot va giu dung ty le (khong bi cat).
-     Thuoc tinh HTML chi dung de trinh duyet biet truoc ty le -> khong giat layout. */
+  /* width:100% + height:auto -> anh co gian theo cot,
+     giu dung ty le goc nen khong bi cat. */
   width: 100%;
   height: auto;
   background-color: rgba(0, 0, 0, 0.04); /* o mo nhat trong luc anh dang tai */
